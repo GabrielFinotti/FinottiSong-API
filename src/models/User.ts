@@ -12,7 +12,7 @@ class User extends Model {
   public role!: "dev" | "user";
 }
 
-User.init(
+User.init(  
   {
     id: {
       type: DataTypes.INTEGER,
