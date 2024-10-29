@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "../db/pgConfig";
+import { sequelize } from "../db/pgConfig";
 
 class User extends Model {
   public id!: number;
@@ -12,7 +12,7 @@ class User extends Model {
   public role!: "dev" | "user";
 }
 
-User.init(  
+User.init(
   {
     id: {
       type: DataTypes.INTEGER,

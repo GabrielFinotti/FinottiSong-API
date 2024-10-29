@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "../db/pgConfig";
+import { sequelize } from "../db/pgConfig";
 
 class Music extends Model {
   public id!: number;
