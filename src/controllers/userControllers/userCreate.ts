@@ -3,6 +3,7 @@ import { UserData } from "../../types/userDataType";
 import validateUserCredentials from "../../utils/validations/validateUserCredentials";
 import User from "../../models/User";
 import { Op } from "sequelize";
+import passwordHash from "../../utils/auth/createPasswordHash";
 
 const userCreate = async (req: Request, res: Response) => {
   try {
@@ -28,6 +29,8 @@ const userCreate = async (req: Request, res: Response) => {
 
     const { role } = userData;
     userData.isPremium = role === "dev";
+
+    userData.password = await passwordHash(userData.password);
 
     await User.create(userData);
 
