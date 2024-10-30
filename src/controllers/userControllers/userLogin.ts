@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { UserData } from "../../types/userDataType";
 import bcrypt from "bcrypt";
 import User from "../../models/User";
+import createAuthToken from "../../utils/auth/createAuthToken";
 
 const userLogin = async (req: Request, res: Response) => {
   try {
@@ -22,9 +23,11 @@ const userLogin = async (req: Request, res: Response) => {
       return res.status(401).send({ message: "Incorrect password!" });
     }
 
+    const token = await createAuthToken(existingUser.id);
+
     return res.status(200).send({
       message: "Login successful",
-      token: "token...",
+      token,
     });
   } catch (error) {
     console.error(`An error occurred while trying to login: ${error}`);

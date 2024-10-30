@@ -5,7 +5,7 @@ import User from "../../models/User";
 import { Op } from "sequelize";
 import passwordHash from "../../utils/auth/createPasswordHash";
 
-const userCreate = async (req: Request, res: Response) => {
+const userRegister = async (req: Request, res: Response) => {
   try {
     const userData: UserData = req.body;
     const response = await validateUserCredentials(userData);
@@ -42,4 +42,4 @@ const userCreate = async (req: Request, res: Response) => {
   }
 };
 
-export default userCreate;
+export default userRegister;
